@@ -1,12 +1,9 @@
 using FixMyCampus.Domain.Enums;
 using Microsoft.AspNetCore.Identity;
+using FixMyCampus.Infrastructure.Identity;
 
-namespace FixMyCampus.Infrastructure.Entities;
+namespace FixMyCampus.Infrastructure.Identity;
 
-/// <summary>
-/// A person who can sign in: Reporter, Admin or Technician.
-/// Id (from IdentityUser) is the internal key; Code is the readable id shown to people.
-/// </summary>
 public class FixMyCampusUser : IdentityUser
 {
   public string FullName { get; set; } = string.Empty;

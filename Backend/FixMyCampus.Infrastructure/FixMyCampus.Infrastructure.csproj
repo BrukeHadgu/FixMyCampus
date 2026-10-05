@@ -1,8 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <ItemGroup>
-    <ProjectReference Include="..\Backend\FixMyCampus.Application\FixMyCampus.Application.csproj" />
-  </ItemGroup>
+ <ItemGroup>
+  <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.11" />
+  <ProjectReference Include="..\FixMyCampus.Application\FixMyCampus.Application.csproj" />
+
+  <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.11" />
+  <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.11" />
+ <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.11" />
+</ItemGroup>
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>

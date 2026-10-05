@@ -2,10 +2,10 @@
 
 ## Team Members & Responsibilities
 
-- [Name] — Team Lead & Pitch
-- [Name] — Frontend Developer
-- [Name] — Backend Developer
-- [Name] — Database & Full-Stack Developer
+- Bruktawit — Team Lead & Pitch
+- Andinet and Yordanos — Frontend Developer
+- Bruktawit and Tigist — Backend Developer
+- Bruktawit and Andinet — Database & Full-Stack Developer
 - [Name] — QA & Testing
 
 ## Tech Stack Used
