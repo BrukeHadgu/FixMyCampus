@@ -1,0 +1,15 @@
+<aside class="sidebar" [class.collapsed]="collapsed">
+  <nav aria-label="Sidebar navigation">
+    @for (link of links; track link.route) {
+      <a
+        [routerLink]="link.route"
+        routerLinkActive="active"
+        [attr.aria-label]="collapsed ? link.label : null"
+        (click)="linkSelected.emit(link)"
+      >
+        @if (link.icon) { <span class="icon" aria-hidden="true">{{ link.icon }}</span> }
+        @if (!collapsed) { <span>{{ link.label }}</span> }
+      </a>
+    }
+  </nav>
+</aside>

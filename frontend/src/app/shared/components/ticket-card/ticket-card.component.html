@@ -1,0 +1,12 @@
+<button class="ticket-card" type="button" (click)="selected.emit(ticket)">
+  <span class="ticket-heading">
+    <strong>{{ ticket.code || ('FMC-' + ticket.ticketNumber) }}</strong>
+    <app-status-badge [status]="ticket.status" />
+  </span>
+  <span class="description">{{ ticket.description }}</span>
+  <span class="details">
+    <span>{{ ticket.category?.name || 'Uncategorized' }}</span>
+    <span>{{ ticket.building?.name || ticket.building?.code || 'Building' }} · {{ ticket.room?.number || ticket.room?.code || 'Room' }}</span>
+    <span class="priority">Priority {{ ticket.priority }}</span>
+  </span>
+</button>

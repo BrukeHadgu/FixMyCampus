@@ -1,0 +1,20 @@
+<ol class="timeline" aria-label="Ticket history">
+  @for (event of events; track event.id) {
+    <li>
+      <span class="marker" aria-hidden="true"></span>
+      <div class="event">
+        <strong>
+          @if (event.fromStatus === null) {
+            Ticket created
+          } @else {
+            {{ getStatusLabel(event.fromStatus) }} → {{ getStatusLabel(event.toStatus) }}
+          }
+        </strong>
+        <time [attr.datetime]="event.createdAt">{{ formatDate(event.createdAt) }}</time>
+        <span class="actor">Updated by {{ event.changedByRole }}</span>
+      </div>
+    </li>
+  } @empty {
+    <li class="empty">No ticket history yet.</li>
+  }
+</ol>

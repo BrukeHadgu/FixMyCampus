@@ -1,0 +1,6 @@
+:host { display: block; }
+.empty-state { align-items: center; color: #64748b; display: flex; flex-direction: column; gap: .75rem; padding: 3rem 1.5rem; text-align: center; }
+.illustration { align-items: center; background: #eff6ff; border-radius: 50%; color: #2563eb; display: flex; font-size: 2rem; height: 4rem; justify-content: center; width: 4rem; }
+h2, p { margin: 0; }
+h2 { color: #17324d; font-size: 1.125rem; }
+button { background: #1d4ed8; border: 0; border-radius: .5rem; color: #fff; cursor: pointer; font: inherit; font-weight: 600; margin-top: .5rem; padding: .625rem 1rem; }

@@ -1,0 +1,8 @@
+:host { display: block; }
+.timeline { list-style: none; margin: 0; padding: 0; }
+li { display: flex; gap: .75rem; min-height: 4rem; position: relative; }
+li:not(:last-child)::before { background: #cbd5e1; content: ''; left: .3125rem; position: absolute; top: .75rem; bottom: -.25rem; width: 2px; }
+.marker { background: #2563eb; border: 2px solid #fff; border-radius: 50%; box-shadow: 0 0 0 1px #2563eb; flex: 0 0 .75rem; height: .75rem; margin-top: .25rem; z-index: 1; }
+.event { display: grid; gap: .25rem; padding-bottom: 1rem; }
+.event strong { color: #1f2937; }
+time, .actor, .empty { color: #64748b; font-size: .875rem; }

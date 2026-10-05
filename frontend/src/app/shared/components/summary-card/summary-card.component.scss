@@ -1,0 +1,6 @@
+:host { display: block; }
+.summary-card { align-items: center; background: #fff; border: 1px solid #e2e8f0; border-radius: .75rem; display: flex; gap: 1rem; padding: 1.25rem; }
+.icon { align-items: center; background: #eff6ff; border-radius: .75rem; color: #1d4ed8; display: inline-flex; font-size: 1.25rem; height: 2.75rem; justify-content: center; width: 2.75rem; }
+p { margin: 0; }
+.title, .detail { color: #64748b; font-size: .875rem; }
+.value { color: #17324d; font-size: 1.5rem; font-weight: 700; margin-block: .25rem; }

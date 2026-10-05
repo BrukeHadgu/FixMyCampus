@@ -1,0 +1,5 @@
+:host { display: block; }
+.loading { align-items: center; color: #475569; display: flex; gap: .75rem; justify-content: center; min-height: 5rem; }
+.spinner { animation: spin .8s linear infinite; border: 3px solid #dbeafe; border-radius: 50%; border-top-color: #2563eb; height: 1.5rem; width: 1.5rem; }
+@keyframes spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .spinner { animation-duration: 2s; } }

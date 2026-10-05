@@ -1,0 +1,8 @@
+:host { display: block; }
+.navbar { align-items: center; background: #fff; border-bottom: 1px solid #e5e7eb; display: flex; gap: 2rem; justify-content: space-between; min-height: 4rem; padding: 0 1.5rem; }
+.brand { color: #17324d; font-size: 1.125rem; font-weight: 700; text-decoration: none; }
+nav, .account { align-items: center; display: flex; gap: 1rem; }
+nav a, .sign-out { color: #475569; text-decoration: none; }
+.sign-out { background: none; border: 0; cursor: pointer; font: inherit; padding: .5rem; }
+.user-name { color: #1f2937; font-weight: 600; }
+@media (max-width: 600px) { .navbar { gap: .75rem; padding-inline: 1rem; } nav { gap: .5rem; } .user-name { display: none; } }
