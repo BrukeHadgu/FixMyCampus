@@ -1,0 +1,14 @@
+<header class="navbar">
+  <a class="brand" routerLink="/">{{ brand }}</a>
+  <nav aria-label="Main navigation">
+    @for (link of links; track link.route) {
+      <a [routerLink]="link.route">{{ link.label }}</a>
+    }
+  </nav>
+  <div class="account">
+    @if (user) {
+      <span class="user-name">{{ user.fullName }}</span>
+      <button type="button" class="sign-out" (click)="signOut.emit()">Sign out</button>
+    }
+  </div>
+</header>

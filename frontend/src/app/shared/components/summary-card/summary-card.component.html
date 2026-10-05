@@ -1,0 +1,8 @@
+<section class="summary-card" [attr.aria-label]="title">
+  @if (icon) { <span class="icon" aria-hidden="true">{{ icon }}</span> }
+  <div>
+    <p class="title">{{ title }}</p>
+    <p class="value">{{ value }}</p>
+    @if (detail) { <p class="detail">{{ detail }}</p> }
+  </div>
+</section>

@@ -1,0 +1,22 @@
+<section class="notifications" aria-label="Notifications">
+  <header>
+    <h2>Notifications</h2>
+    <button type="button" (click)="markAllRead.emit()" [disabled]="unreadCount === 0">Mark all as read</button>
+  </header>
+  @if (unreadCount > 0) {
+    <span class="count" aria-label="Unread notifications">{{ unreadCount }}</span>
+  }
+  <ul>
+    @for (notification of notifications; track notification.id) {
+      <li [class.unread]="!notification.isRead">
+        <button type="button" class="notification" (click)="notificationSelected.emit(notification)">
+          <strong>{{ notification.title }}</strong>
+          <span>{{ notification.message }}</span>
+          <time [attr.datetime]="notification.createdAt">{{ formatDate(notification.createdAt) }}</time>
+        </button>
+      </li>
+    } @empty {
+      <li class="empty">You’re all caught up.</li>
+    }
+  </ul>
+</section>
