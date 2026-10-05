@@ -1,0 +1,24 @@
+@if (ticket(); as item) {
+	<section class="detail-page">
+		<a class="back-link" routerLink="/reporter/my-tickets"><svg lucideArrowLeft [size]="15"></svg> My tickets</a>
+		<div class="title-row"><h1>{{ item.title }}</h1><span class="status-badge" [class]="'status-badge status-' + item.status">{{ statusLabel(item.status) }}</span></div>
+		<p class="ticket-meta">#{{ item.id }} · Reported {{ item.createdAt | date:'medium' }}</p>
+
+		<section class="progress-panel">
+			<div class="progress-heading"><div><h2>{{ item.status === TicketStatus.InProgress ? 'Repair in progress' : statusLabel(item.status) }}</h2><p>{{ item.assigneeName ? item.assigneeName + ' is currently working on this issue.' : 'We will update you as your report progresses.' }}</p></div><span class="tool-icon"><svg lucideWrench [size]="17"></svg></span></div>
+			<div class="progress-track" role="list" aria-label="Ticket progress">
+				@for (stage of stages; track stage; let index = $index) {
+					<div class="progress-step" role="listitem" [class.complete]="index <= currentStage()" [class.current]="index === currentStage()"><span class="progress-line"></span><span>{{ stage }}</span></div>
+				}
+			</div>
+		</section>
+
+		<section class="information-panel">
+			<div class="panel-heading"><h2>Issue information</h2><span class="urgency-badge" [class]="'urgency-badge urgency-' + item.urgency">{{ item.urgency }} urgency</span></div>
+			<div class="ticket-facts"><div><span>Category</span><strong>{{ item.category | titlecase }}</strong></div><div><span>Building</span><strong>{{ item.building || 'Not provided' }}</strong></div><div><span>Room / Area</span><strong>{{ item.location || 'Not provided' }}</strong></div></div>
+			<div class="description"><span>Description</span><p>{{ item.description }}</p></div>
+		</section>
+	</section>
+} @else {
+	<section class="not-found"><h1>Ticket not found</h1><p>We couldn't find that ticket.</p><a class="back-link" routerLink="/reporter/my-tickets"><svg lucideArrowLeft [size]="15"></svg> Return to My tickets</a></section>
+}

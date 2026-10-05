@@ -1,0 +1,71 @@
+:host { display: block; min-height: 100dvh; }
+
+.workspace {
+	--navy: #102541;
+	--navy-soft: #1d3554;
+	--blue: #2864e8;
+	--ink: #152942;
+	--muted: #78879a;
+	--line: #e5eaf0;
+	--canvas: #f4f6f9;
+	min-height: 100dvh;
+	display: grid;
+	grid-template-columns: 186px minmax(0, 1fr);
+	background: var(--canvas);
+	color: var(--ink);
+}
+
+.workspace.login-mode { display: block; min-height: 100dvh; background: #f2f5f7; }
+.login-mode .sidebar, .login-mode .topbar { display: none; }
+.login-mode .main-column { min-height: 100dvh; }
+.login-mode .page-frame { width: 100%; max-width: none; margin: 0; padding: 0; }
+
+.sidebar {
+	position: fixed;
+	z-index: 20;
+	inset: 0 auto 0 0;
+	width: 186px;
+	display: flex;
+	flex-direction: column;
+	padding: 14px 9px 12px;
+	background: var(--navy);
+	color: #e8eef8;
+}
+
+.brand { min-height: 34px; display: flex; align-items: center; gap: 8px; padding: 0 5px; color: #f8fbff; text-decoration: none; font-size: 12px; font-weight: 700; }
+.brand-mark { width: 25px; height: 25px; display: grid; place-items: center; border-radius: 6px; background: #f8fbff; color: var(--navy); }
+.campus-seal { width: 21px; height: 21px; display: grid; place-items: center; border-radius: 50%; background: #edf3ff; color: #214f9f; font-size: 8px; font-weight: 800; }
+.nav-caption { margin: 0 8px 8px; color: #8192aa; font-size: 8px; font-weight: 750; letter-spacing: .1em; text-transform: uppercase; }
+.primary-nav { display: grid; gap: 3px; }
+.primary-nav a { min-height: 34px; display: flex; align-items: center; gap: 10px; padding: 0 9px; border-radius: 5px; color: #b8c6d9; text-decoration: none; font-size: 10px; font-weight: 550; transition: background 140ms ease, color 140ms ease; }
+.primary-nav a:hover, .primary-nav a.active { background: #213854; color: #fff; }
+.nav-icon { width: 16px; display: grid; place-items: center; color: #c2d0e1; }
+.nav-icon { display: grid; }
+.top-avatar { flex: none; display: grid; place-items: center; width: 23px; height: 23px; border: 0; border-radius: 50%; background: #dfeaff; color: #2356ac; font-size: 8px; font-weight: 800; cursor: pointer; }
+.main-column { min-width: 0; grid-column: 2; }
+.topbar { position: sticky; z-index: 10; top: 0; height: 43px; display: flex; align-items: center; gap: 14px; padding: 0 28px; border-bottom: 1px solid #e9edf2; background: rgb(255 255 255 / 96%); backdrop-filter: blur(12px); }
+.topbar-spacer { flex: 1; }
+.topbar-campus { display: flex; align-items: center; gap: 8px; color: #394c63; font-size: 10px; font-weight: 700; }
+.role-switcher { position: relative; display: flex; align-items: center; gap: 7px; color: #718198; }
+.role-switcher select { position: absolute; inset: 0; width: 100%; opacity: 0; cursor: pointer; }
+.role-badge { padding: 4px 7px; border-radius: 12px; background: #edf4ff; color: #3565bd; font-size: 8px; font-weight: 750; }
+.admin-badge { background: #f4edff; color: #7e53c5; }
+.icon-button { position: relative; display: grid; place-items: center; width: 30px; height: 30px; border: 1px solid transparent; border-radius: 5px; background: transparent; color: #65758b; cursor: pointer; }
+.icon-button:hover { border-color: #e2e8f0; background: #f7f9fc; color: #203b5d; }
+.notification-button { border-color: #e9edf3; }
+.notification-dot { position: absolute; top: 6px; right: 6px; width: 5px; height: 5px; border: 1px solid #fff; border-radius: 50%; background: #e97760; }
+.mobile-menu, .scrim { display: none; }
+.page-frame { width: min(100%, 1440px); margin: 0 auto; padding: 32px 29px 42px; }
+
+@media (min-width: 1500px) { .page-frame { padding-inline: 34px; } }
+@media (max-width: 760px) {
+	.workspace { display: block; }
+	.sidebar { transform: translateX(-100%); transition: transform 180ms ease; }
+	.sidebar-open .sidebar { transform: translateX(0); }
+	.sidebar-open .scrim { position: fixed; z-index: 15; inset: 0; display: block; width: 100%; border: 0; background: rgb(12 26 44 / 38%); }
+	.main-column { min-height: 100dvh; }
+	.topbar { height: 43px; gap: 9px; padding-inline: 13px; }
+	.topbar-campus { font-size: 9px; }
+	.mobile-menu { display: grid; }
+	.page-frame { padding: 20px 14px 30px; }
+}

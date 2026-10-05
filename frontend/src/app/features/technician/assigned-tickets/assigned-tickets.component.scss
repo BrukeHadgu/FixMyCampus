@@ -1,0 +1,40 @@
+.assigned-page { display: block; }
+.page-heading { display: flex; align-items: center; justify-content: space-between; gap: 15px; margin-bottom: 17px; }
+.page-heading h1 { margin: 0; color: #172d48; font-size: 21px; font-weight: 650; }
+.page-heading p { margin: 5px 0 0; color: #7b899b; font-size: 10px; }
+.count-badge { padding: 5px 9px; border-radius: 14px; background: #edf3ff; color: #3565bd; font-size: 8px; font-weight: 700; }
+.list-panel { overflow: hidden; border: 1px solid #e4e9ef; border-radius: 9px; background: #fff; box-shadow: 0 2px 5px rgb(29 50 75 / 5%); }
+.list-toolbar { min-height: 54px; display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 0 13px; border-bottom: 1px solid #edf0f4; }
+.search-field, .status-filter { height: 31px; display: flex; align-items: center; gap: 7px; padding: 0 9px; border: 1px solid #e1e7ef; border-radius: 5px; color: #7b899b; }
+.search-field { width: min(100%, 260px); }
+.search-field input { width: 100%; min-width: 0; border: 0; outline: 0; color: #34475f; font: inherit; font-size: 9px; }
+.search-field input::placeholder { color: #9aa6b5; }
+.status-filter { position: relative; }
+.status-filter select { max-width: 145px; appearance: none; padding-right: 8px; border: 0; outline: 0; background: transparent; color: #465970; font: inherit; font-size: 9px; cursor: pointer; }
+.table-scroll { overflow-x: auto; }
+table { width: 100%; min-width: 720px; border-collapse: collapse; text-align: left; }
+th { height: 34px; padding: 0 11px; background: #fbfcfd; color: #7d8a9b; font-size: 8px; font-weight: 700; text-transform: uppercase; }
+td { height: 53px; padding: 7px 11px; border-top: 1px solid #edf0f4; color: #596b80; font-size: 9px; white-space: nowrap; }
+.issue-cell { display: flex; align-items: center; gap: 9px; }
+.issue-cell strong, .issue-cell small, .location-subtitle { display: block; }
+.issue-cell strong { color: #263950; font-size: 9px; font-weight: 650; }
+.issue-cell small, .location-subtitle { margin-top: 3px; color: #9aa6b5; font-size: 8px; }
+.ticket-icon { flex: none; width: 27px; height: 27px; display: grid; place-items: center; border-radius: 6px; background: #edf3ff; color: #3c75eb; }
+.urgency-tag { padding: 4px 7px; border-radius: 15px; font-size: 8px; font-weight: 700; text-transform: capitalize; }
+.urgency-low, .urgency-medium { background: #fff3dc; color: #c46a08; }
+.urgency-high, .urgency-critical { background: #ffebe8; color: #cf4c3d; }
+.status-pill { padding: 4px 8px; border-radius: 18px; font-size: 8px; font-weight: 700; }
+.status-pill::before { content: ''; display: inline-block; width: 5px; height: 5px; margin-right: 5px; border-radius: 50%; background: currentColor; }
+.status-assigned { background: #f4eaff; color: #8d48db; }
+.status-in-progress { background: #fff3dc; color: #c46a08; }
+.status-resolved { background: #e8f7ed; color: #168a51; }
+.view-link { width: 24px; height: 24px; display: grid; place-items: center; border-radius: 5px; background: #edf3ff; color: #3168d5; }
+.empty-state { padding: 32px; color: #7b899b; text-align: center; }
+
+@media (max-width: 560px) {
+	.page-heading { align-items: flex-start; }
+	.page-heading h1 { font-size: 19px; }
+	.list-toolbar { align-items: stretch; flex-direction: column; padding-block: 10px; }
+	.search-field { width: 100%; }
+	.status-filter { align-self: flex-start; }
+}

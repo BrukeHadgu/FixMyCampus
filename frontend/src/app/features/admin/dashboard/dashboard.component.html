@@ -1,0 +1,80 @@
+<section class="admin-dashboard">
+	<header class="admin-heading">
+		<div>
+			<p class="eyebrow">ADMINISTRATION</p>
+			<h1>Facilities overview</h1>
+			<p class="subtitle">Monday, October 5 · Live maintenance workload across campus.</p>
+		</div>
+		<button class="export-button" type="button" (click)="exportCsv()"><svg lucideDownload [size]="14"></svg>Export report</button>
+	</header>
+
+	<div class="metrics-grid">
+		<article class="metric-card">
+			<div class="metric-icon metric-blue"><svg lucideClipboardList [size]="17"></svg></div>
+			<small>This month</small><strong>{{ tickets().length }}</strong><span>Total tickets</span>
+		</article>
+		<article class="metric-card">
+			<div class="metric-icon metric-blue"><svg lucideTicket [size]="17"></svg></div>
+			<small>Needs attention</small><strong>{{ newCount() }}</strong><span>New tickets</span>
+		</article>
+		<article class="metric-card">
+			<div class="metric-icon metric-violet"><svg lucideUsers [size]="17"></svg></div>
+			<small>Technician queue</small><strong>{{ assignedCount() }}</strong><span>Assigned</span>
+		</article>
+		<article class="metric-card">
+			<div class="metric-icon metric-amber"><svg lucideWrench [size]="17"></svg></div>
+			<small>Active work</small><strong>{{ inProgressCount() }}</strong><span>In progress</span>
+		</article>
+		<article class="metric-card">
+			<div class="metric-icon metric-green"><svg lucideCircleCheck [size]="17"></svg></div>
+			<small>Completed</small><strong>{{ resolvedCount() }}</strong><span>Resolved</span>
+		</article>
+	</div>
+
+	<section class="work-panel" aria-labelledby="open-tickets-title">
+		<div class="work-heading">
+			<div>
+				<h2 id="open-tickets-title">Open tickets</h2>
+				<p>{{ openWork().length }} active issues require attention</p>
+			</div>
+			<div class="table-controls">
+				<label class="filter-select" aria-label="Filter by building">
+					<svg lucideSlidersHorizontal [size]="13"></svg>
+					<select [value]="buildingFilter()" (change)="buildingFilter.set($any($event.target).value)">
+						@for (building of buildings(); track building) { <option [value]="building">{{ building }}</option> }
+					</select>
+					<svg class="select-chevron" lucideChevronDown [size]="12"></svg>
+				</label>
+				<label class="filter-select sort-select" aria-label="Sort tickets">
+					<svg lucideCalendarDays [size]="13"></svg>
+					<select [value]="sortOrder()" (change)="sortOrder.set($any($event.target).value)">
+						<option>Newest first</option><option>Oldest first</option>
+					</select>
+					<svg class="select-chevron" lucideChevronDown [size]="12"></svg>
+				</label>
+			</div>
+		</div>
+
+		<div class="table-scroll">
+			<table>
+				<thead><tr><th>Issue</th><th>Building</th><th>Urgency</th><th>Status</th><th>Assignee</th><th>Age</th><th><span class="sr-only">View ticket</span></th></tr></thead>
+				<tbody>
+					@for (ticket of openWork(); track ticket.id) {
+						<tr>
+							<td class="issue-cell"><a [routerLink]="['/tickets', ticket.id]"><strong>{{ ticket.title }}</strong><small>#{{ ticket.id }}</small></a></td>
+							<td>{{ ticket.building }}</td>
+							<td><span class="urgency-tag" [class]="'urgency-tag urgency-' + ticket.urgency">{{ ticket.urgency }}</span></td>
+							<td><span class="status-pill" [class]="'status-pill status-' + ticket.status">{{ statusLabel(ticket.status) }}</span></td>
+							<td>{{ ticket.assigneeName ?? 'Unassigned' }}</td>
+							<td>{{ ageLabel(ticket.createdAt) }}</td>
+							<td><a class="view-ticket" [routerLink]="['/tickets', ticket.id]" [attr.aria-label]="'View ' + ticket.title"><svg lucideArrowUpRight [size]="14"></svg></a></td>
+						</tr>
+					} @empty {
+						<tr><td class="empty-state" colspan="7">No active tickets match these filters.</td></tr>
+					}
+				</tbody>
+			</table>
+		</div>
+		<footer class="table-footer"><span>Showing {{ openWork().length }} active {{ openWork().length === 1 ? 'ticket' : 'tickets' }}</span></footer>
+	</section>
+</section>

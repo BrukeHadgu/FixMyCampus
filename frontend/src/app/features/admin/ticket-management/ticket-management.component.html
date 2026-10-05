@@ -1,0 +1,44 @@
+@if (ticketId(); as selectedId) {
+	@if (ticket(); as item) {
+		<div class="ticket-page">
+			<div class="page-heading">
+				<div class="heading-copy">
+					<a class="back-link" routerLink="/admin/ticket-management"><svg lucideArrowLeft [size]="15"></svg> All tickets</a>
+					<div class="title-line"><h1>{{ item.title }}</h1><span class="status-pill" [class]="'status-pill status-' + item.status">{{ statusLabel(item.status) }}</span><span class="urgency-pill" [class]="'urgency-pill urgency-' + item.urgency">{{ item.urgency }} urgency</span></div>
+					<p class="ticket-meta">#{{ item.id }} · Reported {{ item.createdAt | date:'shortTime' }} by {{ item.reporterName || 'Campus user' }}</p>
+				</div>
+				<div class="actions-menu-wrap">
+					<button class="more-button" type="button" (click)="showActions.update((open) => !open)" [attr.aria-expanded]="showActions()"><svg lucideEllipsis [size]="16"></svg> More actions</button>
+					@if (showActions()) { <div class="actions-menu"><button type="button" [disabled]="item.status !== TicketStatus.Resolved" (click)="closeTicket()">Close ticket</button></div> }
+				</div>
+			</div>
+			<div class="detail-layout">
+				<div class="main-panels">
+					<section class="panel issue-panel" aria-labelledby="issue-title">
+						<div class="panel-heading"><h2 id="issue-title">Issue details</h2><span class="category-pill">{{ item.category | titlecase }}</span></div>
+						<div class="detail-facts"><div><span class="fact-label">Building</span><strong>{{ item.building || 'Not provided' }}</strong></div><div><span class="fact-label">Room / Area</span><strong>{{ item.location || 'Not provided' }}</strong></div><div><span class="fact-label">Category</span><strong>{{ item.category | titlecase }}</strong></div></div>
+						<div class="description-block"><span class="fact-label">Description</span><p>{{ item.description }}</p></div>
+						<div class="reporter-row"><span class="avatar">{{ initials(item.reporterName || 'CU') }}</span><div><strong>{{ item.reporterName || 'Campus user' }}</strong><span>Staff · Submitted {{ item.createdAt | date:'mediumDate' }}</span></div></div>
+					</section>
+					<section class="panel activity-panel" aria-labelledby="activity-title"><h2 id="activity-title">Activity</h2><div class="activity-entry"><span class="activity-icon"><svg lucideCircleCheck [size]="14"></svg></span><div><strong>Ticket submitted</strong><span>{{ item.createdAt | date:'medium' }} · {{ item.reporterName || 'Campus user' }}</span></div></div></section>
+				</div>
+				<aside class="side-panels" aria-label="Ticket actions">
+					<section class="panel assign-panel" aria-labelledby="assign-title"><h2 id="assign-title">Assign technician</h2><p class="panel-description">Assigning this {{ statusLabel(item.status) }} ticket will move it to Assigned.</p><label for="technician">Technician</label><div class="select-wrap"><select id="technician" [value]="selectedTechnician()" (change)="selectedTechnician.set($any($event.target).value)">@for (technician of technicians; track technician) { <option [value]="technician">{{ technician }} · {{ item.category | titlecase }}</option> }</select><span aria-hidden="true">⌄</span></div><button class="primary-button" type="button" (click)="assignTechnician()" [disabled]="item.status === TicketStatus.Closed"><svg lucideUserRoundPlus [size]="15"></svg> Assign technician</button></section>
+					<section class="panel status-panel" aria-labelledby="status-title"><h2 id="status-title">Status actions</h2><div class="current-status"><span>Current status</span><span class="status-pill" [class]="'status-pill status-' + item.status">{{ statusLabel(item.status) }}</span></div><p class="lifecycle-hint">Status changes are sequential. Assign a technician first to unlock the next action.</p><button class="locked-button" type="button" (click)="startWork()" [disabled]="item.status !== TicketStatus.Assigned">@if (item.status === TicketStatus.Assigned) { Start work } @else { <svg lucideLockKeyhole [size]="14"></svg> Start work — locked }</button><button class="locked-button" type="button" (click)="resolveTicket()" [disabled]="item.status !== TicketStatus.InProgress">@if (item.status === TicketStatus.InProgress) { Resolve } @else { <svg lucideLockKeyhole [size]="14"></svg> Resolve — locked }</button></section>
+					<div class="policy-note"><strong>Lifecycle policy</strong><p>New → Assigned → In Progress → Resolved. Steps cannot be skipped or reversed.</p></div>
+				</aside>
+			</div>
+		</div>
+	} @else {
+		<section class="panel not-found"><h1>Ticket not found</h1><p>This ticket may have been removed or the link may be incorrect.</p><a class="back-link" routerLink="/admin/ticket-management"><svg lucideArrowLeft [size]="15"></svg> Return to ticket management</a></section>
+	}
+} @else {
+	<div class="ticket-list-page">
+		<div class="list-heading"><div><p class="eyebrow">ADMINISTRATION</p><h1>Ticket management</h1><p class="list-intro">Review reported issues and manage their resolution.</p></div><label class="filter-control"><span>Status</span><select [value]="statusFilter()" (change)="statusFilter.set($any($event.target).value)"><option value="all">All tickets</option><option value="open">New</option><option value="assigned">Assigned</option><option value="in-progress">In progress</option><option value="resolved">Resolved</option><option value="closed">Closed</option></select></label></div>
+		<section class="ticket-table panel" aria-label="Tickets"><div class="table-header"><span>Ticket</span><span>Location</span><span>Priority</span><span>Status</span><span>Reported</span></div>
+			@for (item of filteredTickets(); track item.id) {
+				<a class="ticket-row" [routerLink]="['/admin/ticket-management', item.id]"><span class="ticket-title"><strong>{{ item.title }}</strong><small>#{{ item.id }} · {{ item.category | titlecase }}</small></span><span class="row-location">{{ item.building || '—' }}<small>{{ item.location || 'Location not provided' }}</small></span><span class="urgency-pill" [class]="'urgency-pill urgency-' + item.urgency">{{ item.urgency }}</span><span><span class="status-pill" [class]="'status-pill status-' + item.status">{{ statusLabel(item.status) }}</span></span><span class="reported-date">{{ item.createdAt | date:'mediumDate' }}</span></a>
+			} @empty { <p class="empty-state">No tickets match this status.</p> }
+		</section>
+	</div>
+}

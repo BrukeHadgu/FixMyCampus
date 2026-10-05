@@ -1,0 +1,34 @@
+<main class="login-page">
+	<div class="login-wrap">
+		<section class="login-panel" aria-labelledby="login-title">
+			<h1 id="login-title">Welcome back</h1>
+			<p class="login-intro">Sign in with your university account to continue.</p>
+
+			<form (ngSubmit)="signIn()" #loginForm="ngForm">
+				<label class="field-label" for="email">Email</label>
+				<div class="input-wrap">
+					<svg lucideMail [size]="15"></svg>
+					<input id="email" name="email" type="email" [(ngModel)]="email" required email autocomplete="username" placeholder="name@aau.edu.et">
+				</div>
+
+				<div class="password-label-row">
+					<label class="field-label" for="password">Password</label>
+				</div>
+				<div class="input-wrap">
+					<svg lucideLockKeyhole [size]="15"></svg>
+					<input id="password" name="password" type="password" [(ngModel)]="password" required autocomplete="current-password" placeholder="Enter your password">
+				</div>
+
+				<div class="form-meta">
+					<label class="remember"><input type="checkbox" name="remember"> <span>Remember me</span></label>
+					<button class="text-action" type="button" (click)="requestHelp()">Forgot password?</button>
+				</div>
+
+				<button class="submit-button" type="submit" [disabled]="loginForm.invalid">Sign in</button>
+			</form>
+
+			@if (message()) { <p class="inline-message" role="status">{{ message() }}</p> }
+			<div class="login-footer">Trouble signing in? <a href="mailto:it@aau.edu.et">Contact IT Service Desk</a></div>
+		</section>
+	</div>
+</main>

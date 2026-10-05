@@ -1,0 +1,55 @@
+.reporter-dashboard { display: block; }
+.page-heading { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-bottom: 17px; }
+.page-heading h1 { margin: 0; color: #172d48; font-family: 'Segoe UI Variable', 'Trebuchet MS', sans-serif; font-size: 21px; font-weight: 650; line-height: 1.25; }
+.page-subtitle { margin: 4px 0 0; color: #7b899b; font-size: 10px; }
+.primary-button { flex: none; min-height: 34px; display: inline-flex; align-items: center; justify-content: center; gap: 7px; padding: 0 12px; border-radius: 5px; background: #2864e8; color: #fff; text-decoration: none; font-size: 10px; font-weight: 650; box-shadow: 0 2px 4px rgb(40 100 232 / 16%); transition: background 140ms ease, transform 140ms ease; }
+.summary-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 11px; }
+.summary-card { min-width: 0; min-height: 104px; display: flex; flex-direction: column; justify-content: space-between; padding: 13px 14px 12px; border: 1px solid #e4e9ef; border-radius: 8px; background: #fff; box-shadow: 0 2px 5px rgb(29 50 75 / 5%); }
+.summary-top, .summary-bottom { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.summary-top > small { color: #8794a5; font-size: 8px; }
+.summary-icon { width: 27px; height: 27px; display: grid; place-items: center; border-radius: 6px; }
+.icon-blue { background: #eaf1fb; color: #315982; }
+.icon-sky { background: #ebf1ff; color: #3c74ed; }
+.icon-amber { background: #fff3da; color: #d47a1c; }
+.icon-green { background: #e8f7ed; color: #168a51; }
+.summary-bottom > span { color: #768499; font-size: 9px; font-weight: 600; }
+.summary-bottom > strong { color: #1b304b; font-size: 19px; font-weight: 500; line-height: 1; }
+.panel { border: 1px solid #e4e9ef; border-radius: 9px; background: #fff; box-shadow: 0 2px 5px rgb(29 50 75 / 5%); }
+.recent-panel { min-height: max(360px, calc(100dvh - 286px)); margin-top: 19px; padding: 0 15px; }
+.panel-heading { min-height: 49px; display: flex; align-items: center; justify-content: space-between; }
+.panel-heading h2 { margin: 0; color: #1d324d; font-size: 12px; font-weight: 750; }
+.quiet-link { color: #2864e8; text-decoration: none; font-size: 9px; font-weight: 550; }
+.ticket-list { display: grid; }
+.ticket-row { min-height: 56px; display: grid; grid-template-columns: 28px minmax(160px, 1fr) minmax(90px, 145px) 100px 80px; align-items: center; gap: 10px; border-bottom: 1px solid #e8edf2; color: inherit; text-decoration: none; transition: background 120ms ease; }
+.ticket-row:last-child { border-bottom: 0; }
+.ticket-glyph { width: 28px; height: 28px; display: grid; place-items: center; border-radius: 6px; background: #edf3ff; color: #3c75eb; }
+.ticket-main { min-width: 0; }
+.ticket-main strong, .ticket-main small { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ticket-main strong { color: #25364b; font-size: 9px; font-weight: 600; }
+.ticket-main small { margin-top: 3px; color: #9aa6b5; font-size: 8px; }
+.ticket-location { overflow: hidden; color: #8592a4; text-overflow: ellipsis; white-space: nowrap; font-size: 8px; }
+.status-pill { justify-self: center; padding: 4px 8px; border-radius: 20px; font-size: 8px; font-weight: 700; white-space: nowrap; }
+.status-pill::before { content: ''; display: inline-block; width: 5px; height: 5px; margin-right: 5px; border-radius: 50%; background: currentColor; vertical-align: 1px; }
+.status-open { background: #edf3ff; color: #2762d5; }
+.status-assigned { background: #f4eaff; color: #8d48db; }
+.status-in-progress { background: #fff3dc; color: #c46a08; }
+.status-resolved { background: #e8f7ed; color: #168a51; }
+.ticket-date { justify-self: end; color: #9aa6b5; text-align: right; white-space: nowrap; font-size: 8px; }
+
+@media (max-width: 900px) {
+	.ticket-row { grid-template-columns: 28px minmax(150px, 1fr) 92px 80px; }
+	.ticket-location { display: none; }
+}
+
+@media (max-width: 620px) {
+	.page-heading { align-items: flex-start; margin-bottom: 15px; }
+	.page-heading h1 { font-size: 19px; }
+	.primary-button { min-height: 32px; padding-inline: 9px; font-size: 9px; }
+	.summary-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+	.summary-card { min-height: 88px; padding: 10px; }
+	.recent-panel { min-height: 350px; margin-top: 14px; padding-inline: 10px; }
+	.ticket-row { min-height: 59px; grid-template-columns: 26px minmax(80px, 1fr) 82px; gap: 7px; }
+	.ticket-glyph { width: 26px; height: 26px; }
+	.status-pill { grid-column: 3; grid-row: 1; }
+	.ticket-date { display: none; }
+}

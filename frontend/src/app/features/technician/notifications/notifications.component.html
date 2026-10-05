@@ -1,0 +1,13 @@
+<section class="notifications-page">
+	<header class="page-heading"><div><h1>Notifications</h1><p>Updates on tickets assigned to your queue.</p></div></header>
+	<section class="notifications-panel">
+		<h2>Recent activity</h2>
+		@for (notification of notifications(); track notification.id) {
+			<a class="notification-row" [routerLink]="['/technician/tickets', notification.id]">
+				<span class="notification-icon"><svg lucideBell [size]="15"></svg></span>
+				<span class="notification-copy"><strong>{{ notification.title }}</strong><small>{{ notification.message }}</small><small>{{ notification.createdAt | date:'MMM d, y · h:mm a' }}</small></span>
+				<svg class="notification-open" lucideArrowUpRight [size]="14"></svg>
+			</a>
+		} @empty { <p class="empty-message">You’re all caught up. New ticket updates will appear here.</p> }
+	</section>
+</section>

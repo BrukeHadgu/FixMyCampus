@@ -1,0 +1,48 @@
+<section class="reporter-dashboard">
+	<div class="page-heading">
+		<div>
+			<h1>Good morning, {{ firstName() }}</h1>
+			<p class="page-subtitle">Here’s what’s happening with your campus reports.</p>
+		</div>
+		<a class="primary-button" routerLink="/reporter/report-issue"><svg lucidePlus [size]="15"></svg>Report issue</a>
+	</div>
+
+	<div class="summary-grid">
+		<article class="summary-card">
+			<div class="summary-top"><span class="summary-icon icon-blue"><svg lucideTicket [size]="17"></svg></span><small>All time</small></div>
+			<div class="summary-bottom"><span>Total reports</span><strong>{{ totalReports() }}</strong></div>
+		</article>
+		<article class="summary-card">
+			<div class="summary-top"><span class="summary-icon icon-sky"><svg lucideSparkles [size]="17"></svg></span></div>
+			<div class="summary-bottom"><span>New</span><strong>{{ newReports() }}</strong></div>
+		</article>
+		<article class="summary-card">
+			<div class="summary-top"><span class="summary-icon icon-amber"><svg lucideRotateCw [size]="17"></svg></span></div>
+			<div class="summary-bottom"><span>In progress</span><strong>{{ inProgressReports() }}</strong></div>
+		</article>
+		<article class="summary-card">
+			<div class="summary-top"><span class="summary-icon icon-green"><svg lucideCircleCheck [size]="17"></svg></span></div>
+			<div class="summary-bottom"><span>Resolved</span><strong>{{ resolvedReports() }}</strong></div>
+		</article>
+	</div>
+
+	<section class="panel recent-panel" aria-labelledby="recent-heading">
+		<div class="panel-heading">
+			<h2 id="recent-heading">Recent tickets</h2>
+			<a class="quiet-link" routerLink="/reporter/my-tickets">View all</a>
+		</div>
+		<div class="ticket-list">
+			@for (ticket of recentTickets(); track ticket.id) {
+				<a class="ticket-row" [routerLink]="['/tickets', ticket.id]">
+					<span class="ticket-glyph"><svg lucideWrench [size]="15"></svg></span>
+					<span class="ticket-main"><strong>{{ ticket.title }}</strong><small>#{{ ticket.id }}</small></span>
+					<span class="ticket-location">{{ ticket.building }}</span>
+					<span class="status-pill" [class]="'status-pill status-' + ticket.status">{{ statusLabel(ticket.status) }}</span>
+					<span class="ticket-date">{{ ticket.createdAt | date:'MMM d, y' }}</span>
+				</a>
+			} @empty {
+				<div class="empty-row">No reports yet. Submit your first campus issue to get started.</div>
+			}
+		</div>
+	</section>
+</section>
