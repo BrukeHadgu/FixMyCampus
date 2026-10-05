@@ -4,7 +4,7 @@ using FixMyCampus.Domain.Entities;
 using FixMyCampus.Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 namespace FixMyCampus.Infrastructure.Persistence;
-
+//change the DbContext to inherit from IdentityDbContext<FixMyCampusUser> to include Identity tables
 public class FixMyCampusDbContext : IdentityDbContext<FixMyCampusUser>
 {
   public FixMyCampusDbContext(DbContextOptions<FixMyCampusDbContext> options) : base(options) { }
