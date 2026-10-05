@@ -1,1 +1,35 @@
-<p>ticket-details works!</p>
+<section class="technician-detail">
+	<a class="back-link" routerLink="/technician/assigned-tickets"><svg lucideArrowLeft [size]="14"></svg>Assigned tickets</a>
+
+	@if (ticket(); as item) {
+		<header class="detail-heading">
+			<div><div class="title-line"><h1>{{ item.title }}</h1><span class="status-pill" [class]="'status-pill status-' + item.status">{{ statusLabel(item.status) }}</span></div><p>#{{ item.id }} · Reported {{ item.createdAt | date:'MMM d, y, h:mm a' }} by {{ item.reporterName }}</p></div>
+		</header>
+
+		<div class="detail-layout">
+			<div class="detail-main">
+				<section class="detail-card">
+					<div class="card-heading"><h2>Issue information</h2><span class="urgency-tag" [class]="'urgency-tag urgency-' + item.urgency">{{ item.urgency }} urgency</span></div>
+					<div class="info-grid"><div><small>BUILDING</small><strong>{{ item.building }}</strong></div><div><small>ROOM / AREA</small><strong>{{ item.location }}</strong></div><div><small>CATEGORY</small><strong>{{ item.category }}</strong></div></div>
+					<div class="description"><small>DESCRIPTION</small><p>{{ item.description }}</p></div>
+					<div class="location-line"><svg lucideMapPin [size]="14"></svg>{{ item.building }} · {{ item.location }}</div>
+				</section>
+				<section class="detail-card activity-card"><h2>Activity</h2><div class="activity-entry"><span class="activity-mark"><svg lucideWrench [size]="13"></svg></span><div><strong>Ticket assigned to you</strong><small>{{ item.createdAt | date:'MMM d, y' }}</small></div></div></section>
+			</div>
+
+			<aside class="action-column">
+				<section class="detail-card action-card"><span class="action-icon"><svg lucideWrench [size]="17"></svg></span><h2>Repair in progress</h2><p>Update the ticket as work progresses.</p>
+					<div class="progress-track" [class.is-started]="item.status !== TicketStatus.Assigned"><span></span></div>
+					<div class="progress-labels"><span>Assigned</span><span>In progress</span><span>Resolved</span></div>
+				</section>
+				<section class="detail-card status-actions"><h2>Status actions</h2><p>Current status</p>
+					@if (item.status === TicketStatus.Assigned) { <button class="action-button" type="button" (click)="startWork()"><svg lucideWrench [size]="14"></svg>Start work</button> }
+					@if (item.status === TicketStatus.InProgress) { <button class="action-button" type="button" (click)="resolve()"><svg lucideCheck [size]="14"></svg>Mark resolved</button> }
+					@if (item.status === TicketStatus.Resolved) { <div class="resolved-note"><svg lucideCheck [size]="14"></svg>This ticket is resolved.</div> }
+				</section>
+			</aside>
+		</div>
+	} @else {
+		<section class="detail-card missing-ticket"><h1>Ticket not found</h1><p>This ticket may have been removed or the link is incorrect.</p><a routerLink="/technician/assigned-tickets">Return to assigned tickets</a></section>
+	}
+</section>

@@ -1,1 +1,27 @@
-<p>my-tickets works!</p>
+<section class="tickets-page">
+	<h1>My tickets</h1>
+	<div class="filter-bar">
+		<svg lucideSlidersHorizontal [size]="15"></svg>
+		<label for="ticket-status">Status</label>
+		<select id="ticket-status" [value]="statusFilter()" (change)="statusFilter.set($any($event.target).value)">
+			<option value="all">All statuses</option><option value="open">New</option><option value="assigned">Assigned</option><option value="in-progress">In Progress</option><option value="resolved">Resolved</option><option value="closed">Closed</option>
+		</select>
+		<span class="ticket-count">{{ filteredTickets().length }} tickets</span>
+	</div>
+	<section class="ticket-table" aria-label="My tickets">
+		<div class="table-header"><span>Issue</span><span>Building</span><span>Room</span><span>Status</span><span>Date</span><span>View</span></div>
+		@for (ticket of filteredTickets(); track ticket.id) {
+			<a class="ticket-row" [routerLink]="['/tickets', ticket.id]">
+				<span class="issue-cell"><strong>{{ ticket.title }}</strong><small>#{{ ticket.id }}</small></span>
+				<span>{{ ticket.building || '—' }}</span>
+				<span>{{ ticket.location || '—' }}</span>
+				<span><span class="status-badge" [class]="'status-badge status-' + ticket.status">{{ statusLabel(ticket.status) }}</span></span>
+				<span>{{ ticket.createdAt | date:'MMM d, y' }}</span>
+				<span class="view-icon" aria-label="View ticket"><svg lucideArrowUpRight [size]="15"></svg></span>
+			</a>
+		} @empty {
+			<p class="empty-state">No tickets match this status.</p>
+		}
+		<div class="table-footer">Showing {{ filteredTickets().length }} tickets <span><button type="button" disabled>Previous</button><button type="button" disabled>Next</button></span></div>
+	</section>
+</section>

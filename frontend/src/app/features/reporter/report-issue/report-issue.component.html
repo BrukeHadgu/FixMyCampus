@@ -1,1 +1,69 @@
-<p>report-issue works!</p>
+<section class="report-page">
+	<header class="page-heading">
+		<div>
+			<h1>Report an issue</h1>
+			<p>Tell Facilities what needs attention. Required fields are marked with an asterisk.</p>
+		</div>
+	</header>
+
+	<section class="form-panel" aria-labelledby="issue-details-heading">
+		<div class="section-heading">
+			<span class="step-number">1</span>
+			<div>
+				<h2 id="issue-details-heading">Issue details</h2>
+				<p>Give us enough detail to route your request correctly.</p>
+			</div>
+		</div>
+
+		<form #reportForm="ngForm" (ngSubmit)="submitReport()">
+			<div class="form-grid">
+				<label class="field">
+					<span>Category <b>*</b></span>
+					<span class="select-wrap">
+						<select name="category" [(ngModel)]="category" required>
+							@for (option of categories; track option.value) {
+								<option [value]="option.value">{{ option.label }}</option>
+							}
+						</select>
+						<svg lucideChevronDown [size]="15"></svg>
+					</span>
+				</label>
+
+				<label class="field">
+					<span>Building <b>*</b></span>
+					<span class="select-wrap">
+						<select name="building" [(ngModel)]="building" required>
+							<option value="" disabled>Select a building</option>
+							@for (option of buildings; track option.value) {
+								<option [value]="option.value">{{ option.label }}</option>
+							}
+						</select>
+						<svg lucideChevronDown [size]="15"></svg>
+					</span>
+				</label>
+
+				<label class="field full-width">
+					<span>Room or area <b>*</b></span>
+					<input name="location" [(ngModel)]="location" required maxlength="100" placeholder="Room number, floor, or nearby landmark">
+					<small>Use a room number, floor, or nearby landmark.</small>
+				</label>
+
+				<label class="field full-width description-field">
+					<span>Description <b>*</b></span>
+					<textarea name="description" [(ngModel)]="description" required maxlength="500" rows="5" placeholder="Describe what happened and where. Include details that will help our team respond."></textarea>
+					<small>{{ description.length }} / 500 characters</small>
+				</label>
+			</div>
+
+			<div class="form-footer">
+				<p>Your name is visible only to Facilities staff.</p>
+				<div class="form-actions">
+					<a class="secondary-button" routerLink="/reporter/dashboard">Cancel</a>
+					<button class="primary-button" type="submit" [disabled]="reportForm.invalid">
+						<svg lucideSend [size]="14"></svg>Submit report
+					</button>
+				</div>
+			</div>
+		</form>
+	</section>
+</section>

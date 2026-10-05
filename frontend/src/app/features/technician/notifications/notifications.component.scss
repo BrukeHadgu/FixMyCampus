@@ -1,0 +1,14 @@
+.notifications-page { display: block; }
+.page-heading { margin-bottom: 17px; }
+.page-heading h1 { margin: 0; color: #172d48; font-size: 21px; font-weight: 650; }
+.page-heading p { margin: 5px 0 0; color: #7b899b; font-size: 10px; }
+.notifications-panel { max-width: 860px; padding: 15px; border: 1px solid #e4e9ef; border-radius: 9px; background: #fff; box-shadow: 0 2px 5px rgb(29 50 75 / 5%); }
+.notifications-panel h2 { margin: 0 0 8px; color: #213750; font-size: 11px; font-weight: 750; }
+.notification-row { min-height: 62px; display: flex; align-items: center; gap: 10px; border-top: 1px solid #edf0f4; color: inherit; text-decoration: none; }
+.notification-icon { width: 29px; height: 29px; flex: none; display: grid; place-items: center; border-radius: 7px; background: #edf3ff; color: #3975e8; }
+.notification-copy { min-width: 0; flex: 1; }
+.notification-copy strong, .notification-copy small { display: block; }
+.notification-copy strong { color: #30445d; font-size: 9px; font-weight: 650; }
+.notification-copy small { margin-top: 3px; color: #8794a4; font-size: 8px; }
+.notification-open { color: #8293a8; }
+.empty-message { margin: 0; padding: 22px 0 10px; color: #78879a; font-size: 10px; }

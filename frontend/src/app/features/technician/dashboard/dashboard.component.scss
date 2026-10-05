@@ -1,0 +1,52 @@
+.technician-dashboard { display: block; }
+.page-heading { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-bottom: 17px; }
+.eyebrow { margin: 0 0 5px; color: #8190a4; font-size: 8px; font-weight: 750; letter-spacing: .1em; }
+.page-heading h1 { margin: 0; color: #172d48; font-size: 21px; font-weight: 650; line-height: 1.25; }
+.subtitle { margin: 4px 0 0; color: #7b899b; font-size: 10px; }
+.quiet-action, .quiet-link { display: inline-flex; align-items: center; gap: 6px; color: #356ed4; text-decoration: none; font-size: 9px; font-weight: 600; }
+.quiet-action { min-height: 32px; padding: 0 10px; border: 1px solid #dfe6ef; border-radius: 5px; background: #fff; }
+.summary-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+.summary-card { min-width: 0; min-height: 102px; display: grid; grid-template-columns: 30px 1fr; grid-template-rows: 1fr auto; align-items: center; column-gap: 9px; padding: 12px; border: 1px solid #e4e9ef; border-radius: 8px; background: #fff; box-shadow: 0 2px 5px rgb(29 50 75 / 5%); }
+.summary-icon { width: 28px; height: 28px; grid-row: 1; display: grid; place-items: center; border-radius: 6px; }
+.icon-blue { background: #eaf1fb; color: #315982; }
+.icon-amber { background: #fff3da; color: #d47a1c; }
+.icon-violet { background: #f4eaff; color: #8d48db; }
+.icon-green { background: #e8f7ed; color: #168a51; }
+.summary-card > span { grid-column: 1 / -1; color: #77869a; font-size: 9px; font-weight: 600; }
+.summary-card > strong { grid-column: 2; grid-row: 1; justify-self: end; color: #1b304b; font-size: 19px; font-weight: 500; }
+.work-panel { min-height: 340px; margin-top: 19px; padding: 0 15px; border: 1px solid #e4e9ef; border-radius: 9px; background: #fff; box-shadow: 0 2px 5px rgb(29 50 75 / 5%); }
+.panel-heading { min-height: 52px; display: flex; align-items: center; justify-content: space-between; }
+.panel-heading h2 { margin: 0; color: #1d324d; font-size: 12px; font-weight: 750; }
+.panel-heading p { margin: 4px 0 0; color: #8693a4; font-size: 9px; }
+.ticket-list { display: grid; }
+.ticket-row { min-height: 56px; display: grid; grid-template-columns: 28px minmax(160px, 1fr) minmax(90px, 140px) 95px 55px; align-items: center; gap: 10px; border-bottom: 1px solid #e8edf2; color: inherit; text-decoration: none; }
+.ticket-row:last-child { border-bottom: 0; }
+.ticket-icon { width: 28px; height: 28px; display: grid; place-items: center; border-radius: 6px; background: #edf3ff; color: #3c75eb; }
+.ticket-copy { min-width: 0; }
+.ticket-copy strong, .ticket-copy small { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ticket-copy strong { color: #25364b; font-size: 9px; font-weight: 600; }
+.ticket-copy small { margin-top: 3px; color: #9aa6b5; font-size: 8px; }
+.ticket-building, .ticket-date { overflow: hidden; color: #8592a4; text-overflow: ellipsis; white-space: nowrap; font-size: 8px; }
+.ticket-date { text-align: right; }
+.status-pill { justify-self: center; padding: 4px 8px; border-radius: 20px; font-size: 8px; font-weight: 700; white-space: nowrap; }
+.status-pill::before { content: ''; display: inline-block; width: 5px; height: 5px; margin-right: 5px; border-radius: 50%; background: currentColor; vertical-align: 1px; }
+.status-assigned { background: #f4eaff; color: #8d48db; }
+.status-in-progress { background: #fff3dc; color: #c46a08; }
+.status-resolved { background: #e8f7ed; color: #168a51; }
+.empty-message { padding: 28px 0; color: #78879a; font-size: 10px; }
+
+@media (max-width: 760px) {
+	.summary-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+	.ticket-row { grid-template-columns: 28px minmax(130px, 1fr) 85px; }
+	.ticket-building, .ticket-date { display: none; }
+}
+
+@media (max-width: 480px) {
+	.page-heading { align-items: flex-start; }
+	.page-heading h1 { font-size: 19px; }
+	.quiet-action { font-size: 0; padding-inline: 8px; }
+	.quiet-action svg { flex: none; }
+	.work-panel { padding-inline: 10px; }
+	.ticket-row { grid-template-columns: 26px minmax(80px, 1fr) 82px; gap: 7px; }
+	.ticket-icon { width: 26px; height: 26px; }
+}

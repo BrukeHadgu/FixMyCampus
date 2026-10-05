@@ -1,1 +1,29 @@
-<p>assigned-tickets works!</p>
+<section class="assigned-page">
+	<header class="page-heading">
+		<div><h1>Assigned tickets</h1><p>Review your workload and update the status as you go.</p></div>
+		<span class="count-badge">{{ tickets().length }} tickets</span>
+	</header>
+
+	<section class="list-panel">
+		<div class="list-toolbar">
+			<label class="search-field"><svg lucideSearch [size]="14"></svg><input type="search" [value]="query()" (input)="query.set($any($event.target).value)" placeholder="Search tickets"></label>
+			<label class="status-filter"><svg lucideSlidersHorizontal [size]="14"></svg><select [value]="statusFilter()" (change)="statusFilter.set($any($event.target).value)">@for (status of statuses; track status) { <option>{{ status }}</option> }</select></label>
+		</div>
+
+		<div class="table-scroll"><table>
+			<thead><tr><th>Issue</th><th>Building / location</th><th>Urgency</th><th>Status</th><th>Reported</th><th></th></tr></thead>
+			<tbody>
+				@for (ticket of tickets(); track ticket.id) {
+					<tr>
+						<td class="issue-cell"><span class="ticket-icon"><svg lucideWrench [size]="14"></svg></span><span><strong>{{ ticket.title }}</strong><small>#{{ ticket.id }}</small></span></td>
+						<td>{{ ticket.building }}<small class="location-subtitle">{{ ticket.location }}</small></td>
+						<td><span class="urgency-tag" [class]="'urgency-tag urgency-' + ticket.urgency">{{ ticket.urgency }}</span></td>
+						<td><span class="status-pill" [class]="'status-pill status-' + ticket.status">{{ statusLabel(ticket.status) }}</span></td>
+						<td>{{ ticket.createdAt | date:'MMM d, y' }}</td>
+						<td><a class="view-link" [routerLink]="['/technician/tickets', ticket.id]" [attr.aria-label]="'Open ' + ticket.title"><svg lucideArrowUpRight [size]="14"></svg></a></td>
+					</tr>
+				} @empty { <tr><td class="empty-state" colspan="6">No assigned tickets match these filters.</td></tr> }
+			</tbody>
+		</table></div>
+	</section>
+</section>

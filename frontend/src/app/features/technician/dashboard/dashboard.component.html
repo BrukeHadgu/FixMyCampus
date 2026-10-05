@@ -1,1 +1,37 @@
-<p>dashboard works!</p>
+<section class="technician-dashboard">
+	<header class="page-heading">
+		<div>
+			<p class="eyebrow">TECHNICIAN WORKSPACE</p>
+			<h1>Good morning, {{ firstName() }}</h1>
+			<p class="subtitle">Your campus maintenance queue for today.</p>
+		</div>
+		<a class="quiet-action" routerLink="/technician/assigned-tickets"><svg lucideCalendarDays [size]="14"></svg>View schedule</a>
+	</header>
+
+	<div class="summary-grid">
+		<article class="summary-card"><div class="summary-icon icon-blue"><svg lucideTickets [size]="17"></svg></div><span>Assigned to me</span><strong>{{ workTickets().length }}</strong></article>
+		<article class="summary-card"><div class="summary-icon icon-amber"><svg lucideWrench [size]="17"></svg></div><span>In progress</span><strong>{{ inProgressCount() }}</strong></article>
+		<article class="summary-card"><div class="summary-icon icon-violet"><svg lucideClock3 [size]="17"></svg></div><span>Waiting to start</span><strong>{{ assignedCount() }}</strong></article>
+		<article class="summary-card"><div class="summary-icon icon-green"><svg lucideCircleCheck [size]="17"></svg></div><span>Resolved</span><strong>{{ resolvedCount() }}</strong></article>
+	</div>
+
+	<section class="work-panel" aria-labelledby="work-title">
+		<div class="panel-heading">
+			<div><h2 id="work-title">My assigned tickets</h2><p>Work assigned to you across campus</p></div>
+			<a class="quiet-link" routerLink="/technician/assigned-tickets">View all <svg lucideArrowUpRight [size]="13"></svg></a>
+		</div>
+		<div class="ticket-list">
+			@for (ticket of recentTickets(); track ticket.id) {
+				<a class="ticket-row" [routerLink]="['/technician/tickets', ticket.id]">
+					<span class="ticket-icon"><svg lucideWrench [size]="15"></svg></span>
+					<span class="ticket-copy"><strong>{{ ticket.title }}</strong><small>#{{ ticket.id }} · {{ ticket.location }}</small></span>
+					<span class="ticket-building">{{ ticket.building }}</span>
+					<span class="status-pill" [class]="'status-pill status-' + ticket.status">{{ statusLabel(ticket.status) }}</span>
+					<span class="ticket-date">{{ ticket.createdAt | date:'MMM d' }}</span>
+				</a>
+			} @empty {
+				<div class="empty-message">No tickets are assigned to you yet.</div>
+			}
+		</div>
+	</section>
+</section>
