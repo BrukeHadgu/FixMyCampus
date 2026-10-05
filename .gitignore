@@ -12,3 +12,20 @@
 
 # User secrets
 **/secrets.json
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# .NET build output
+**/bin/
+**/obj/
+
+# User-specific files
+*.user
+*.userosscache
+*.sln.docstates
+
+# Environment
+.env
