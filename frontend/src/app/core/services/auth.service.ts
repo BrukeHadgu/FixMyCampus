@@ -1,42 +1,71 @@
-import { Injectable, signal } from '@angular/core';
-import { UserRole } from '../../shared/enums/user-role.enum';
+import { HttpClient } from '@angular/common/http';
+import { Injectable, inject } from '@angular/core';
+import { Router } from '@angular/router';
+import { Observable, tap } from 'rxjs';
+
+import { APP_CONSTANTS } from '../constants/app.constants';
+import { API_ENDPOINTS } from '../constants/api-endpoints';
+
+export interface AuthUser {
+  id: string;
+  email: string;
+  role: string;
+}
+
+export interface LoginRequest {
+  email: string;
+  password: string;
+}
+
+export interface LoginResponse {
+  accessToken: string;
+  user: AuthUser;
+}
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  readonly currentRole = signal<UserRole | null>(this.readRole());
-  readonly userName = signal(this.readName());
+  private readonly http = inject(HttpClient);
+  private readonly router = inject(Router);
+
+  login(credentials: LoginRequest): Observable<LoginResponse> {
+    return this.http.post<LoginResponse>(API_ENDPOINTS.auth.login, credentials).pipe(
+      tap((response) => {
+        localStorage.setItem(APP_CONSTANTS.authTokenStorageKey, response.accessToken);
+        localStorage.setItem(APP_CONSTANTS.currentUserStorageKey, JSON.stringify(response.user));
+      })
+    );
+  }
+
+  getToken(): string | null {
+    return localStorage.getItem(APP_CONSTANTS.authTokenStorageKey);
+  }
+
+  getCurrentUser(): AuthUser | null {
+    const user = localStorage.getItem(APP_CONSTANTS.currentUserStorageKey);
+
+    if (!user) {
+      return null;
+    }
+
+    try {
+      return JSON.parse(user) as AuthUser;
+    } catch {
+      return null;
+    }
+  }
 
   isAuthenticated(): boolean {
-    return this.currentRole() !== null;
+    return this.getToken() !== null;
   }
 
-  hasRole(role: UserRole): boolean {
-    return this.currentRole() === role;
+  hasRole(roles: readonly string[]): boolean {
+    const user = this.getCurrentUser();
+    return user !== null && roles.includes(user.role);
   }
 
-  signIn(role: UserRole, name: string): void {
-    this.currentRole.set(role);
-    this.userName.set(name);
-    localStorage.setItem('fixmycampus-role', role);
-    localStorage.setItem('fixmycampus-name', name);
-  }
-
-  setRole(role: UserRole): void {
-    this.currentRole.set(role);
-    localStorage.setItem('fixmycampus-role', role);
-  }
-
-  signOut(): void {
-    this.currentRole.set(null);
-    localStorage.removeItem('fixmycampus-role');
-  }
-
-  private readRole(): UserRole | null {
-    const role = typeof localStorage === 'undefined' ? null : localStorage.getItem('fixmycampus-role');
-    return Object.values(UserRole).includes(role as UserRole) ? role as UserRole : null;
-  }
-
-  private readName(): string {
-    return typeof localStorage === 'undefined' ? 'Jordan Davis' : localStorage.getItem('fixmycampus-name') ?? 'Jordan Davis';
+  logout(): void {
+    localStorage.removeItem(APP_CONSTANTS.authTokenStorageKey);
+    localStorage.removeItem(APP_CONSTANTS.currentUserStorageKey);
+    void this.router.navigateByUrl(APP_CONSTANTS.loginRoute);
   }
 }
