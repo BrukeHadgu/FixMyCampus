@@ -1,0 +1,14 @@
+
+# Angular
+**/node_modules/
+**/dist/
+**/.angular/
+
+# Environment files
+**/appsettings.Development.json
+**/appsettings.json
+**/appsettings.Production.json
+**/.env
+
+# User secrets
+**/secrets.json
