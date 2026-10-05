@@ -1,0 +1,39 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "FixMyCampus.Application/1.0.0": {
+        "dependencies": {
+          "FixMyCampus.Domain": "1.0.0"
+        },
+        "runtime": {
+          "FixMyCampus.Application.dll": {}
+        }
+      },
+      "FixMyCampus.Domain/1.0.0": {
+        "runtime": {
+          "FixMyCampus.Domain.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "FixMyCampus.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "FixMyCampus.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

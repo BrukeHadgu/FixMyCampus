@@ -9,7 +9,9 @@ public class TicketHistory
   public TicketStatus? FromStatus { get; set; }
   public TicketStatus ToStatus { get; set; }
   public string ChangedById { get; set; } = string.Empty;
+  public string ChangedByName { get; set; } = string.Empty;
   public UserRole ChangedByRole { get; set; }
+  public string? Note { get; set; }
   public string? TechnicianUserId { get; set; }
   public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 }

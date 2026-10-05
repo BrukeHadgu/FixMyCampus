@@ -1,0 +1,16 @@
+C:\Users\ed\FixMyCampus\Backend\FixMyCampus.Application\obj\Debug\net8.0\FixMyCampus.Application.csproj.AssemblyReference.cache
+C:\Users\ed\FixMyCampus\Backend\FixMyCampus.Application\obj\Debug\net8.0\FixMyCampus.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ed\FixMyCampus\Backend\FixMyCampus.Application\obj\Debug\net8.0\FixMyCampus.Application.AssemblyInfoInputs.cache
+C:\Users\ed\FixMyCampus\Backend\FixMyCampus.Application\obj\Debug\net8.0\FixMyCampus.Application.AssemblyInfo.cs
+C:\Users\ed\FixMyCampus\Backend\FixMyCampus.Application\obj\Debug\net8.0\FixMyCampus.Application.csproj.CoreCompileInputs.cache
+C:\Users\ed\FixMyCampus\Backend\FixMyCampus.Application\obj\Debug\net8.0\FixMyCampus.Application.sourcelink.json
+C:\Users\ed\FixMyCampus\Backend\FixMyCampus.Application\bin\Debug\net8.0\FixMyCampus.Application.deps.json
+C:\Users\ed\FixMyCampus\Backend\FixMyCampus.Application\bin\Debug\net8.0\FixMyCampus.Application.dll
+C:\Users\ed\FixMyCampus\Backend\FixMyCampus.Application\bin\Debug\net8.0\FixMyCampus.Application.pdb
+C:\Users\ed\FixMyCampus\Backend\FixMyCampus.Application\bin\Debug\net8.0\FixMyCampus.Domain.dll
+C:\Users\ed\FixMyCampus\Backend\FixMyCampus.Application\bin\Debug\net8.0\FixMyCampus.Domain.pdb
+C:\Users\ed\FixMyCampus\Backend\FixMyCampus.Application\obj\Debug\net8.0\FixMyCam.372041E8.Up2Date
+C:\Users\ed\FixMyCampus\Backend\FixMyCampus.Application\obj\Debug\net8.0\FixMyCampus.Application.dll
+C:\Users\ed\FixMyCampus\Backend\FixMyCampus.Application\obj\Debug\net8.0\refint\FixMyCampus.Application.dll
+C:\Users\ed\FixMyCampus\Backend\FixMyCampus.Application\obj\Debug\net8.0\FixMyCampus.Application.pdb
+C:\Users\ed\FixMyCampus\Backend\FixMyCampus.Application\obj\Debug\net8.0\ref\FixMyCampus.Application.dll

@@ -23,4 +23,6 @@ public class Ticket
   public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
   public DateTime? ResolvedAt { get; set; }
   public List<TicketHistory> History { get; set; } = new();
+  public string ReporterName { get; set; } = string.Empty;
+  public string? TechnicianName { get; set; }
 }
